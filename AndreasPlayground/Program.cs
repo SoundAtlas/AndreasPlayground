@@ -251,7 +251,6 @@ while (isRunning)
                 String numInput2 = Console.ReadLine();
                 double num2 = 0;
                 bool success2 = double.TryParse(numInput2, out num2);
-                addRunning = true;
 
                 if (success2)
                 {
@@ -294,8 +293,7 @@ while (isRunning)
                 String numInput2 = Console.ReadLine();
                 double num2 = 0;
                 bool success2 = double.TryParse(numInput2, out num2);
-                subtractRunning = true;
-
+                
                 if (success2)
                 {
                     double result = num1 - num2;
@@ -336,8 +334,7 @@ while (isRunning)
                 string numInput2 = Console.ReadLine();
                 double num2 = 0;
                 bool success2 = double.TryParse(numInput2, out num2);
-                multiplyRunning = true;
-
+                
                 if (success2)
                 {
                     double result = num1 * num2;
@@ -375,14 +372,12 @@ while (isRunning)
 
                 if (success1)
                 {
-                    if (num1 != 0)
-                    {
+                    
                         Console.Write("\nChoose second number:\n> ");
                         string numInput2 = Console.ReadLine();
                         double num2;
                         bool success2 = double.TryParse(numInput2, out num2);
-                        divideRunning = true;
-
+                        
                         if (success2)
                         {
                             if (num2 != 0)
@@ -403,13 +398,13 @@ while (isRunning)
                             Console.WriteLine("Error: You must enter numbers only!");
                             divideRunning = false;
                         }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error: Division by 0 is not allowed!");
-                        divideRunning = false;
-                    }
-                }                         
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Error: You must enter numbers only!");
+                    divideRunning = false;
+                }
                 
             }
             while (!divideRunning); 
