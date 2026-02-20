@@ -222,7 +222,7 @@ while (isRunning)
     }
 
 }
-void Pause()
+    void Pause()
     {
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
