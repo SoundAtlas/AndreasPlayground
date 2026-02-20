@@ -185,9 +185,14 @@ while (isRunning)
     Console.WriteLine("4) Divide");
     Console.WriteLine("5) Exit");
     Console.WriteLine("=======================");
-    Console.Write("Choose an option:\n>");
+    Console.Write("Choose an option:\n> ");
 
-    int choice = int.Parse(Console.ReadLine());
+    if (!int.TryParse(Console.ReadLine(), out int choice))
+    {
+        Console.WriteLine("Invalid option, please enter a number between 1-5");
+        Pause();
+        continue;
+    }
 
     switch (choice)
     {
@@ -217,6 +222,7 @@ while (isRunning)
             break;
         default:
             Console.WriteLine("Invalid input, please enter a number between 1-5!");
+            Pause();
             break;
     }
 
