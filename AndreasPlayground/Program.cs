@@ -192,20 +192,221 @@ while (isRunning)
     switch (choice)
     {
         case 1:
-            Console.WriteLine("You chose '1) Add'");
+            Console.WriteLine("1) Add");
+            Add();
+            Pause();
             break;
         case 2:
-            Console.WriteLine("You chose '2) Subtract'");
+            Console.WriteLine("2) Subtract");
+            Subtract();
+            Pause();
             break;
         case 3:
-            Console.WriteLine("You chose '3) Multiply'");
+            Console.WriteLine("3) Multiply");
+            Multiply();
+            Pause();
             break;
         case 4:
-            Console.WriteLine("You chose '4) Divide'");
+            Console.WriteLine("4) Divide");
+            Divide();
+            Pause();
             break;
         case 5:
             isRunning = false;
+            Console.WriteLine("Thank you for using the calculator, have a great day!");
+            break;
+        default:
+            Console.WriteLine("Invalid input, please enter a number between 1-5!");
             break;
     }
+
+
+
+    void Pause()
+    {
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
         
+    void Add()
+    {
+        bool addRunning = false;
+
+        do
+        {            
+            Console.Write("\nChoose first number:\n> ");
+            string numInput1 = Console.ReadLine();
+            double num1 = 0;
+            bool success1 = double.TryParse(numInput1, out num1);
+
+            if (success1)
+            {
+                Console.Write("\nChoose second number:\n> ");
+                String numInput2 = Console.ReadLine();
+                double num2 = 0;
+                bool success2 = double.TryParse(numInput2, out num2);
+                addRunning = true;
+
+                if (success2)
+                {
+                    double result = num1 + num2;
+                    Console.WriteLine($"The result of {num1:F2} + {num2:F2} is: {result:F2}");
+                    addRunning = true;
+                }
+                else
+                {
+                    Console.WriteLine("Error: You must enter number only!");
+                    addRunning = false;
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Error: You must enter numbers only!");
+                addRunning = false;
+            }
+
+        }
+        while(!addRunning);
+        
+    }
+
+    void Subtract()
+    {
+        bool subtractRunning = false;
+
+        do
+        {
+            Console.Write("\nChoose first number:\n> ");
+            string numInput1 = Console.ReadLine();
+            double num1 = 0;
+            bool success1 = double.TryParse(numInput1, out num1);
+
+            if (success1)
+            {
+                Console.Write("\nChoose second number:\n>");
+                String numInput2 = Console.ReadLine();
+                double num2 = 0;
+                bool success2 = double.TryParse(numInput2, out num2);
+                subtractRunning = true;
+
+                if (success2)
+                {
+                    double result = num1 - num2;
+                    Console.WriteLine($"The result of {num1:F2} - {num2:F2} is: {result:F2}");
+                    subtractRunning = true;
+                }
+                else
+                {
+                    Console.WriteLine("Error: You must enter numbers only!");
+                    subtractRunning = false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error: You must enter numbers only!");
+                subtractRunning = false;
+            }
+        }
+        while (!subtractRunning);
+    }
+
+    void Multiply()
+    {
+
+        bool multiplyRunning = false;
+
+        do
+        {
+
+            Console.Write("\nChoose first number:\n> ");
+            string numInput1 = Console.ReadLine();
+            double num1 = 0;
+            bool success1 = double.TryParse(numInput1, out num1);
+
+            if (success1)
+            {
+                Console.Write("\nChoose second number:\n> ");
+                string numInput2 = Console.ReadLine();
+                double num2 = 0;
+                bool success2 = double.TryParse(numInput2, out num2);
+                multiplyRunning = true;
+
+                if (success2)
+                {
+                    double result = num1 * num2;
+                    Console.WriteLine($"The result of {num1:F2} * {num2:F2} is: {result:F2}");
+                    multiplyRunning = true;
+
+                }
+                else
+                {
+                    Console.WriteLine("Error: You must enter numbers only!");
+                    multiplyRunning = false;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Error: You must enter numbers only!");
+                multiplyRunning = false;
+            }
+        }
+        while (!multiplyRunning);
+    }
+
+    void Divide()
+    {
+        bool divideRunning = false;
+        {
+            do
+            {
+
+                Console.Write("\nCho0se first number:\n> ");
+                string numInput1 = Console.ReadLine();
+                double num1 = 0;
+                bool success1 = double.TryParse(numInput1, out num1);
+
+                if (success1)
+                {
+                    if (num1 != 0)
+                    {
+                        Console.Write("\nChoose second number:\n> ");
+                        string numInput2 = Console.ReadLine();
+                        double num2;
+                        bool success2 = double.TryParse(numInput2, out num2);
+                        divideRunning = true;
+
+                        if (success2)
+                        {
+                            if (num2 != 0)
+                            {
+                                double result = num1 / num2;
+                                Console.WriteLine($"The result of {num1:F2} / {num2:F2} is: {result:F2}");
+                                divideRunning = true;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: Division by 0 is not allowed!");
+                                divideRunning = false;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: You must enter numbers only!");
+                            divideRunning = false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Division by 0 is not allowed!");
+                        divideRunning = false;
+                    }
+                }                         
+                
+            }
+            while (!divideRunning); 
+        }
+    }
 }
