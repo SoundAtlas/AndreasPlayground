@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿
 //Fizzbuzz game
 
 /*Console.WriteLine("Welcome to the FizzBuzz game!");
@@ -21,117 +20,6 @@ for (int i = 1; i <= 100; i++)
 {
     Console.WriteLine(fizzBuzz(i));
 }*/
-
-
-
-
-
-//MenuTutorial
-
-/*using System;
-
-namespace MenuTutorial
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // Call the new intro method
-            ShowWelcome();
-
-            bool isRunning = true;
-            while (isRunning)
-            {
-                Console.WriteLine("\n--- HOVEDMENU ---");
-                Console.WriteLine("1) Introduktion");
-                Console.WriteLine("2) Lav en beregning");
-                Console.WriteLine("3) Afslut");
-                Console.Write("\nVælg en mulighed: ");
-
-                string userInput = Console.ReadLine();
-
-                switch (userInput)
-                {
-                    case "1":
-                        ShowIntro();
-                        break;
-                    case "2":
-                        PerformCalculation();
-                        break;
-                    case "3":
-                        isRunning = false;
-                        Console.WriteLine("Programmet afsluttes...");
-                        break;
-                    default:
-                        Console.WriteLine("Ugyldigt valg, prøv igen.");
-                        break;
-                }
-            }
-        }
-
-        static void ShowWelcome()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("==========================================");
-            Console.WriteLine("    VELKOMMEN TIL MIN SOFTWARE TUTORIAL   ");
-            Console.WriteLine("==========================================");
-            Console.ResetColor();
-            Console.WriteLine("\nTryk på en tast for at starte...");
-            Console.ReadKey();
-        }
-
-        static void ShowIntro()
-        {
-            Console.WriteLine("\nDette program lærer dig at bruge switch-statements og loops i C#.");
-        }
-
-        static void PerformCalculation()
-        {
-            try
-            {
-                Console.Write("Indtast tal A: ");
-                double numberA = Convert.ToDouble(Console.ReadLine());
-                Console.Write("Indtast tal B: ");
-                double numberB = Convert.ToDouble(Console.ReadLine());
-
-                double result = numberA + numberB;
-                Console.WriteLine($"Resultatet af {numberA} + {numberB} er: {result}");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Fejl: Indtast venligst et gyldigt tal.");
-            }
-        }
-    }
-}
-*/
-
-/*bool isValid;
-
-do
-{
-    isValid = true;
-
-    Console.Write("Write a number\n> ");
-  
-
-
-
-    try
-    {
-        int userInput = int.Parse(Console.ReadLine());
-        Console.WriteLine($"Wow you completed the task and wrote {userInput} which is a valid number");
-    }
-    catch (Exception)
-    {
-        Console.WriteLine("Invalid input, please write a number");
-        isValid = false;
-    }
-}
-while (!isValid);*/
-
-
 
 
 
@@ -170,8 +58,14 @@ do
 } while (!isValid);*/
 
 
-//2. Method Practice "Menu + Simple Calculator"
 
+
+
+
+
+
+//2. Method Practice "Menu + Simple Calculator"
+/*
 bool isRunning = true;
 
 while (isRunning)
@@ -313,3 +207,82 @@ while (isRunning)
         }
     }
 
+*/
+
+
+
+
+//3. Guess the Number 2.0
+
+
+Random rng = new Random();
+
+int answer = MakeRandom();
+
+Console.Write("\nA random number has been generated between 1-100. Try to guess it in as few guesses as possible\n> ");
+
+int i = 0;
+
+while (true)
+{
+ 
+    if (!int.TryParse(Console.ReadLine(), out int guess))
+    {
+        Console.WriteLine("Invalid input, please enter a valid integer.");
+        Console.Write("> ");
+        continue;
+    }
+
+    i++;
+    if (guess == answer)
+    {
+        WinMessage(i);
+        string resume;
+        while (true)
+        {
+            Console.Write("Do you want to play again? (y/n)\n> ");
+            resume = (Console.ReadLine() ?? "").Trim().ToLower();
+            if (resume == "y" || resume == "n")
+                break;
+
+            Console.WriteLine("Please enter only 'y' or 'n'.");
+        }
+
+
+        if (resume == "y")
+        {
+            answer = MakeRandom();
+            i = 0;
+            Console.Write("\nA new random number has been generated between 1-100. Try to guess it in as few guesses as possible\n> ");
+            continue;
+        }
+        else
+        {
+            Console.WriteLine("Thanks for playing! Goodbye!");
+            break;
+
+        }
+    }
+    else if (guess < answer)
+        Console.WriteLine($"Too low! Try again.\nGuesses: {i}\n> ");
+
+    else
+        Console.Write($"Too high! Try again.\nGuesses: {i}\n> ");        
+}
+
+int MakeRandom()
+{
+    return rng.Next(1, 101);
+}
+
+
+void WinMessage(int guesses)
+{
+    if (guesses <= 5)
+        Console.WriteLine($"You guessed correctly in {guesses} guesses. Good job, you are very sharp!");
+    else if (guesses > 5 && guesses <= 10)
+        Console.WriteLine($"You guessed correctly in {guesses} guesses. Good job");
+    else
+        Console.WriteLine($"You guessed correctly in {guesses} guesses.");
+       
+}
