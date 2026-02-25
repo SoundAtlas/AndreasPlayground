@@ -214,7 +214,7 @@ while (isRunning)
 
 //3. Guess the Number 2.0
 
-
+/*
 Random rng = new Random();
 
 int answer = MakeRandom();
@@ -286,3 +286,172 @@ void WinMessage(int guesses)
         Console.WriteLine($"You guessed correctly in {guesses} guesses.");
        
 }
+*/
+
+//Exercise 4 — Palindrome Checker (Text + Number)
+
+
+bool isRunning = true;
+
+while (isRunning)
+{
+    Console.Clear();
+    Console.WriteLine("=== WELCOME TO THE PALINDROME CHECKER ===");
+    Console.WriteLine("         Please choose an option         ");
+
+    Console.WriteLine("1) Check palindrome (text)");
+    Console.WriteLine("2) Check palindrome (number)");
+    Console.WriteLine("3) Exit");
+
+    int choice = ReadInt("Choose an option:\n> ");
+
+    switch (choice)
+    {
+        case 1:            
+            CheckPalindromeText();
+            Pause();
+            break;
+        case 2:            
+            CheckPalindromeNumber();
+            Pause();
+            break;
+        case 3:
+            Console.WriteLine("Thank you for using the Palindrome Checker, have a great day!");
+            Pause();
+            isRunning = false;
+            break;
+        default:
+            Console.WriteLine("Invalid input, please enter a number between 1-3!");
+            Pause();
+            break;
+        }
+    }
+
+
+
+int ReadInt(string message)
+{
+       while (true)
+    {
+        Console.Write(message);
+        if (int.TryParse(Console.ReadLine(), out int value))
+            return value;
+        Console.WriteLine($"Invalid input. Please enter a whole number.");
+    }
+
+}
+
+
+
+string ReadString(string message)
+{
+    
+    Console.Write(message);
+    return Console.ReadLine() ?? "";
+
+}
+
+void Pause()
+{
+    Console.WriteLine("\nPress any key to continue...");
+    Console.ReadKey();
+}
+
+
+void CheckPalindromeText()
+{
+    string original;
+
+    while (true)
+    {
+        original = ReadString("Enter a text to check if it's a palindrome:\n> ");
+
+        if (!string.IsNullOrEmpty(original))
+            break;
+
+        Console.WriteLine("You must enter text.");
+
+    }
+
+    string cleaned = original.Replace(" ", "").ToLower();
+
+    if (IsPalindrome(cleaned))
+        Console.WriteLine($"'{cleaned}' is a palindrome");
+    else
+        Console.WriteLine($"'{cleaned}' is not a palindrome");
+}
+
+void CheckPalindromeNumber()
+{
+    int number = ReadInt("Enter a number to check if it's a palindrome:\n> ");
+
+    string numberString = number.ToString();
+    
+    if (IsPalindrome(numberString))
+        Console.WriteLine($"'{number}' is a palindrome.");
+    else
+        Console.WriteLine($"'{number}' is not a palindrome");
+
+
+
+
+
+}
+
+bool IsPalindrome(string text)
+{
+
+
+
+    int left = 0;
+    int right = text.Length - 1;
+
+
+    while (left < right)
+    {
+        if (text[left] != text[right])    
+            return false;
+        
+        left++;
+        right--;
+    }
+
+    return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
