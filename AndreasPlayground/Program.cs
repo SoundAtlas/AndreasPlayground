@@ -291,7 +291,7 @@ void WinMessage(int guesses)
 //Exercise 4 — Palindrome Checker (Text + Number)
 
 
-bool isRunning = true;
+/*bool isRunning = true;
 
 while (isRunning)
 {
@@ -418,8 +418,97 @@ bool IsPalindrome(string text)
 
     return true;
 
+}*/
+
+
+
+
+
+// Karakter skala
+
+/*
+int score = ReadInt("Indtast score (0-100):\n> ");
+
+
+if (ErGyldigScore(score))
+{
+    int karakter = BeregnKarakter(score);
+    Console.WriteLine($"Karakter: {karakter}");
+}
+else
+{
+    Console.WriteLine("Ugyldig score. Score skal være mellem 0 og 100.");
 }
 
+bool ErGyldigScore(int score)
+{
+    return score >= 0 && score <= 100;
+}
+
+int BeregnKarakter(int score)
+{
+    if (score >= 90)
+        return 12;
+    else if (score >= 80)
+        return 10;
+    else if (score >= 65)
+        return 7;
+    else if (score >= 50)
+        return 4;
+    else if (score >= 25)
+        return 2;
+    else if (score >= 10)
+        return 0;
+    else
+        return -3;
+}
+
+
+int ReadInt(string message)
+{
+    while (true)
+    {
+        Console.Write(message);
+        if (int.TryParse(Console.ReadLine(), out int value)) 
+            return value;
+
+        Console.WriteLine($"Invalid input. Please enter a whole number.");
+    }
+
+}
+*/
+
+
+
+
+
+// Primenumberchecker
+/*
+Console.Write("Find alle primtal op til: ");
+int n = int.Parse(Console.ReadLine());
+
+for (int i = 2; i <= n; i++)
+{
+    if (ErPrimtal(i))
+    {
+        Console.WriteLine(i);
+    }
+}
+
+bool ErPrimtal(int tal)
+{
+    if (tal <= 1)
+        return false;
+
+    for (int i = 2; i < Math.Sqrt(tal); i++)
+    {
+        if (tal % i == 0)
+            return false;
+    }
+    
+        return true;
+}
+*/
 
 
 
