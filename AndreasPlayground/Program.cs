@@ -512,16 +512,143 @@ bool ErPrimtal(int tal)
 
 
 
+// Rock paper scissors
+
+
+
+int userScore = 0;
+int computerScore = 0;
+
+Random random = new Random();
+
+
+Console.WriteLine("===ROCK PAPER SCISSORS===");
+
+int rounds = ReadRounds();
+int roundsToWin = rounds / 2 + 1;
+Console.WriteLine($"First to {roundsToWin} wins!\n");
+
+while (userScore < roundsToWin && computerScore < roundsToWin)
+{
+    string winner = PlayRound(random);
+
+    if (winner == "User")
+        userScore++;
+    else if(winner == "Computer")
+        computerScore++;
+    
+    Console.WriteLine($"Score: User: {userScore} - Computer: {computerScore}");
+}
+
+string finalWinner = ChooseFinalWinner(userScore, computerScore);
+
+Console.WriteLine($"\nThe final winner is: The {finalWinner}!");
 
 
 
 
+//Methods:
+int ReadRounds()
+{
+    while (true)
+    {
+        Console.Write("How many rounds do you want to play? (3/5/7)\n> ");
+        if (int.TryParse(Console.ReadLine(), out int rounds) &&
+            (rounds == 3 || rounds == 5 || rounds == 7))
+            return rounds;
 
+        Console.WriteLine("Invalid choice. Please enter 3, 5 or 7.");
+    }
+}
 
+int ReadUserChoice()
+{
+    while (true)
+    {
+        Console.Write("\nChoose: 1 = Rock, 2 = Paper, 3 = Scissors\n> ");
+        if (int.TryParse(Console.ReadLine(), out int choice) &&
+            choice >= 1 && choice <= 3)
+            return choice;
 
+        Console.WriteLine("Invalid choice. Please enter 1, 2 or 3.");
+    }
 
+}
 
+string PlayRound(Random random)
+{
+    
+    int userChoice = ReadUserChoice();
+    int computerChoice = random.Next(1, 4);
 
+    string userStr = IntToText(userChoice);
+    string computerStr = IntToText(computerChoice);
+    
+    Console.WriteLine($"The user chose: {userStr}");
+    Console.WriteLine($"The computer chose: {computerStr}");
+
+    string winner = ChooseRoundWinner(userChoice, computerChoice);
+
+    if (winner == "User")
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("The user wins the round!");
+    }
+    else if (winner == "Computer")
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("The computer wins the round!");
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("Its a tie!");
+    }
+    Console.ResetColor();
+    return winner;
+}
+
+string IntToText(int tal)
+{
+    switch (tal)
+    {
+        case 1:
+            return "Rock";
+        case 2:
+            return "Paper";
+        case 3:
+            return "Scissors";
+        default:
+            return "Invalid choice";
+        
+    }
+}
+
+string ChooseRoundWinner(int user, int computer)
+{
+    if (user == computer)
+    {
+        
+        return "Tie";
+    }
+
+    if((user == 1 && computer == 3) || 
+       (user == 2 && computer == 1) || 
+       (user == 3 && computer == 2))        
+    {
+        return "User";
+    }
+
+    return "Computer";
+}
+
+string ChooseFinalWinner(int userScore, int computerScore)
+{
+    if (userScore > computerScore)
+        return "User";
+
+    return "Computer";
+}
 
 
 
