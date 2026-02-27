@@ -1,0 +1,23 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 120
+
+[*.{cs,csx}]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# Enforce no multiple blank lines (StyleCop rule SA1507)
+# Requires adding StyleCop.Analyzers to your projects for this rule to run.
+dotnet_diagnostic.SA1507.severity = error
+
+# Surface formatting issues so IDEs/CI can fix them
+dotnet_diagnostic.IDE0055.severity = warning
+
+# Prefer at most one consecutive blank line (some editors/formatters respect this setting)
+max_consecutive_blank_lines = 1

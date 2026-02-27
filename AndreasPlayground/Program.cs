@@ -1,4 +1,6 @@
-﻿//Fizzbuzz game
+// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 /*Console.WriteLine("Welcome to the FizzBuzz game!");
 
@@ -20,10 +22,6 @@ for (int i = 1; i <= 100; i++)
     Console.WriteLine(fizzBuzz(i));
 }*/
 
-
-
-
-
 // 1. Input + validation "safe number reader"
 
 /*Console.WriteLine("Enter an integer between 1-10: ");
@@ -42,7 +40,7 @@ do
             Console.WriteLine("Invalid input, please enter a number between 1 and 10.");
             isValid = false;
         }
-        else         
+        else
         {
             Console.WriteLine($"You entered {userInput}, which is a valid number.");
             isValid = true;
@@ -56,14 +54,7 @@ do
     }
 } while (!isValid);*/
 
-
-
-
-
-
-
-
-//2. Method Practice "Menu + Simple Calculator"
+// 2. Method Practice "Menu + Simple Calculator"
 /*
 bool isRunning = true;
 
@@ -103,7 +94,7 @@ while (isRunning)
             Divide();
             Pause();
             break;
-        case 5:            
+        case 5:
             Console.WriteLine("Thank you for using the calculator, have a great day!");
             Pause();
             isRunning = false;
@@ -120,16 +111,16 @@ while (isRunning)
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
-        
+
     void Add()
     {
-                 
+
         double num1 = ReadDouble("\nChoose first number:\n> ");
-        double num2 = ReadDouble("\nChoose second number:\n> ");                 
-              
+        double num2 = ReadDouble("\nChoose second number:\n> ");
+
         double result = num1 + num2;
-        Console.WriteLine($"The result of {num1:F2} + {num2:F2} is: {result:F2}");                              
-        
+        Console.WriteLine($"The result of {num1:F2} + {num2:F2} is: {result:F2}");
+
     }
 
     void Subtract()
@@ -141,27 +132,27 @@ while (isRunning)
         double result = num1 - num2;
         Console.WriteLine($"The result of {num1:F2} - {num2:F2} is: {result:F2}");
 
-    }       
+    }
 
     void Multiply()
-    {           
+    {
         double num1 = ReadDouble("\nChoose first number:\n> ");
         double num2 = ReadDouble("\nChoose second number:\n> ");
 
         double result = num1 * num2;
         Console.WriteLine($"The result of {num1:F2} * {num2:F2} is: {result:F2}");
-        
+
     }
 
     void Divide()
     {
-                        
+
         double num1 = ReadDouble("\nChoose first number:\n> ");
         double num2 = ReadNonZeroDouble("\nChoose second number:\n> ");
 
         double result = num1 / num2;
         Console.WriteLine($"The result of {num1:F2} / {num2:F2} is: {result:F2}");
-                
+
     }
 
 
@@ -173,7 +164,7 @@ while (isRunning)
 
             if (int.TryParse(Console.ReadLine(), out int value) && value >= min && value <= max)
                 return value;
-                      
+
                 Console.WriteLine($"Invalid input. Please enter a whole number between {min}-{max}.");
         }
     }
@@ -198,20 +189,17 @@ while (isRunning)
 
             double value = ReadDouble(message);
 
-            if (value != 0)            
+            if (value != 0)
                 return value;
 
-            Console.WriteLine("Error: Division by 0 is not allowed!");           
+            Console.WriteLine("Error: Division by 0 is not allowed!");
 
         }
     }
 
 */
 
-
-
-
-//3. Guess the Number 2.0
+// 3. Guess the Number 2.0
 
 /*
 Random rng = new Random();
@@ -224,7 +212,7 @@ int i = 0;
 
 while (true)
 {
- 
+
     if (!int.TryParse(Console.ReadLine(), out int guess))
     {
         Console.WriteLine("Invalid input, please enter a valid integer.");
@@ -266,7 +254,7 @@ while (true)
         Console.WriteLine($"Too low! Try again.\nGuesses: {i}\n> ");
 
     else
-        Console.Write($"Too high! Try again.\nGuesses: {i}\n> ");        
+        Console.Write($"Too high! Try again.\nGuesses: {i}\n> ");
 }
 
 int MakeRandom()
@@ -283,12 +271,11 @@ void WinMessage(int guesses)
         Console.WriteLine($"You guessed correctly in {guesses} guesses. Good job");
     else
         Console.WriteLine($"You guessed correctly in {guesses} guesses.");
-       
+
 }
 */
 
-//Exercise 4 — Palindrome Checker (Text + Number)
-
+// Exercise 4 — Palindrome Checker (Text + Number)
 
 /*bool isRunning = true;
 
@@ -306,11 +293,11 @@ while (isRunning)
 
     switch (choice)
     {
-        case 1:            
+        case 1:
             CheckPalindromeText();
             Pause();
             break;
-        case 2:            
+        case 2:
             CheckPalindromeNumber();
             Pause();
             break;
@@ -344,7 +331,7 @@ int ReadInt(string message)
 
 string ReadString(string message)
 {
-    
+
     Console.Write(message);
     return Console.ReadLine() ?? "";
 
@@ -385,7 +372,7 @@ void CheckPalindromeNumber()
     int number = ReadInt("Enter a number to check if it's a palindrome:\n> ");
 
     string numberString = number.ToString();
-    
+
     if (IsPalindrome(numberString))
         Console.WriteLine($"'{number}' is a palindrome.");
     else
@@ -408,9 +395,9 @@ bool IsPalindrome(string text)
 
     while (left < right)
     {
-        if (text[left] != text[right])    
+        if (text[left] != text[right])
             return false;
-        
+
         left++;
         right--;
     }
@@ -418,10 +405,6 @@ bool IsPalindrome(string text)
     return true;
 
 }*/
-
-
-
-
 
 // Karakter skala
 
@@ -468,7 +451,7 @@ int ReadInt(string message)
     while (true)
     {
         Console.Write(message);
-        if (int.TryParse(Console.ReadLine(), out int value)) 
+        if (int.TryParse(Console.ReadLine(), out int value))
             return value;
 
         Console.WriteLine($"Invalid input. Please enter a whole number.");
@@ -476,10 +459,6 @@ int ReadInt(string message)
 
 }
 */
-
-
-
-
 
 // Primenumberchecker
 /*
@@ -504,12 +483,10 @@ bool ErPrimtal(int tal)
         if (tal % i == 0)
             return false;
     }
-    
+
         return true;
 }
 */
-
-
 
 /*// Rock paper scissors
 
@@ -535,7 +512,7 @@ while (userScore < roundsToWin && computerScore < roundsToWin)
         userScore++;
     else if(winner == "Computer")
         computerScore++;
-    
+
     Console.WriteLine($"Score: User: {userScore} - Computer: {computerScore}");
 }
 
@@ -576,13 +553,13 @@ int ReadUserChoice()
 
 string PlayRound(Random random)
 {
-    
+
     int userChoice = ReadUserChoice();
     int computerChoice = random.Next(1, 4);
 
     string userStr = IntToText(userChoice);
     string computerStr = IntToText(computerChoice);
-    
+
     Console.WriteLine($"The user chose: {userStr}");
     Console.WriteLine($"The computer chose: {computerStr}");
 
@@ -619,20 +596,20 @@ string IntToText(int tal)
             return "Scissors";
         default:
             return "Invalid choice";
-        
+
     }
 }
 
 string ChooseRoundWinner(int user, int computer)
 {
     if (user == computer)
-    {        
+    {
         return "Tie";
     }
 
-    if((user == 1 && computer == 3) || 
-       (user == 2 && computer == 1) || 
-       (user == 3 && computer == 2))        
+    if((user == 1 && computer == 3) ||
+       (user == 2 && computer == 1) ||
+       (user == 3 && computer == 2))
     {
         return "User";
     }
@@ -649,14 +626,7 @@ string ChooseFinalWinner(int userScore, int computerScore)
 }
 */
 
-
-
-
-
-
-
 // Exercise 5 - Trip cost calculator
-
 const double dieselPrice = 11.00;
 const double gasPrice = 13.49;
 
@@ -665,10 +635,9 @@ bool running = true;
 while (running)
 {
     MainMenu();
-
 }
 
-//methods:
+// methods:
 
 // This method will be used to display the main menu and call the MenuChoice method to handle the user's input.
 void MainMenu()
@@ -698,8 +667,7 @@ void MenuChoice()
     }
 }
 
-
-//Helper method to read an integer value from the user, it will keep asking until the user enters a valid number within the specified range.
+// Helper method to read an integer value from the user, it will keep asking until the user enters a valid number within the specified range.
 int ReadInt(string message, int min, int max)
 {
     while (true)
@@ -716,7 +684,7 @@ int ReadInt(string message, int min, int max)
     }
 }
 
-//Helper method to read a double value from the user, it will keep asking until the user enters a valid number greater than the specified minimum.
+// Helper method to read a double value from the user, it will keep asking until the user enters a valid number greater than the specified minimum.
 double ReadDouble(string message, double min, bool allowEqual)
 {
     while (true)
@@ -725,14 +693,14 @@ double ReadDouble(string message, double min, bool allowEqual)
         if (double.TryParse(Console.ReadLine(), out double value))
         {
             if ((allowEqual && value >= min) || (!allowEqual && value > min))
+            {
                 return value;
+            }
         }
 
         Console.WriteLine($"Invalid input, please write a number.");
     }
 }
-
-
 
 // This method will be used to start a new calculation, it will ask the user for the fuel type and fuel consumption, and then we can use that information to calculate the trip cost in the future.
 void NewCalculation()
@@ -750,17 +718,16 @@ void NewCalculation()
     double totalPrice = litersUsed * pricePerLiter;
 
     // Print the results to the user.
-
     DisplayResults(fuelTypeStr, distance, fuelConsumption, litersUsed, pricePerLiter, totalPrice);
 }
-
-
 
 // This method will be used to convert the fuel type integer input into a string for display purposes.
 string FuelTypeToStr(int fuelTypeInt)
 {
     if (fuelTypeInt == 1)
+    {
         return "Diesel";
+    }
 
     return "Gas";
 }

@@ -1,0 +1,18 @@
+<Project>
+  <Target Name="EnsureEditorConfigPresent" BeforeTargets="BeforeBuild">
+    <PropertyGroup>
+      <EditorConfigPath>$(MSBuildThisFileDirectory).editorconfig</EditorConfigPath>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(EditorConfigPath)')" Text="Build requires a repository-level .editorconfig file at '$(MSBuildThisFileDirectory).editorconfig'. Add one to the repo root to continue." />
+  </Target>
+
+  <!-- Attempt to auto-format sources before build so rules like removing multiple blank lines are applied -->
+  <Target Name="RunDotnetFormat" BeforeTargets="BeforeBuild">
+    <!-- Run dotnet format on the project directory. If dotnet-format isn't available the build will continue but a warning is emitted. -->
+    <Message Importance="high" Text="Running 'dotnet format' to apply code-style fixes (if available)..." />
+    <Exec Command="dotnet format &quot;$(MSBuildProjectDirectory)&quot;" ContinueOnError="WarnAndContinue">
+      <Output TaskParameter="ExitCode" PropertyName="DotnetFormatExitCode" />
+    </Exec>
+    <Message Importance="high" Condition="'$(DotnetFormatExitCode)' != '' and '$(DotnetFormatExitCode)' != '0'" Text="dotnet format returned exit code $(DotnetFormatExitCode). If formatting didn't run, install dotnet-format or add it as a dotnet tool manifest." />
+  </Target>
+</Project>
