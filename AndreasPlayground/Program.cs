@@ -1,5 +1,4 @@
-﻿
-//Fizzbuzz game
+﻿//Fizzbuzz game
 
 /*Console.WriteLine("Welcome to the FizzBuzz game!");
 
@@ -512,7 +511,7 @@ bool ErPrimtal(int tal)
 
 
 
-// Rock paper scissors
+/*// Rock paper scissors
 
 
 
@@ -627,8 +626,7 @@ string IntToText(int tal)
 string ChooseRoundWinner(int user, int computer)
 {
     if (user == computer)
-    {
-        
+    {        
         return "Tie";
     }
 
@@ -649,6 +647,7 @@ string ChooseFinalWinner(int userScore, int computerScore)
 
     return "Computer";
 }
+*/
 
 
 
@@ -656,18 +655,132 @@ string ChooseFinalWinner(int userScore, int computerScore)
 
 
 
+// Exercise 5 - Trip cost calculator
+
+const double dieselPrice = 11.00;
+const double gasPrice = 13.49;
+
+bool running = true;
+
+while (running)
+{
+    MainMenu();
+
+}
+
+//methods:
+
+// This method will be used to display the main menu and call the MenuChoice method to handle the user's input.
+void MainMenu()
+{
+    Console.Clear();
+    Console.WriteLine("=== TRIP COST CALCULATOR ===");
+    Console.WriteLine("1. New calculation");
+    Console.WriteLine("2. Exit");
+    MenuChoice();
+}
+
+// This method will be used to handle the user's menu choice, it will call the appropriate method based on the user's input.
+void MenuChoice()
+{
+    switch (ReadInt("Choose an option:\n> ", 1, 2))
+    {
+        case 1:
+            NewCalculation();
+            break;
+        case 2:
+            Console.WriteLine("Thank you for using the Trip Cost Calculator, have a great day!");
+            running = false;
+            break;
+        default:
+            Console.WriteLine("Invalid input, please enter a number between 1-2!");
+            break;
+    }
+}
+
+
+//Helper method to read an integer value from the user, it will keep asking until the user enters a valid number within the specified range.
+int ReadInt(string message, int min, int max)
+{
+    while (true)
+    {
+        Console.Write(message);
+        if (int.TryParse(Console.ReadLine(), out int value) &&
+            value >= min &&
+            value <= max)
+        {
+            return value;
+        }
+
+        Console.WriteLine($"Invalid input, please write a whole number between {min} & {max}");
+    }
+}
+
+//Helper method to read a double value from the user, it will keep asking until the user enters a valid number greater than the specified minimum.
+double ReadDouble(string message, double min, bool allowEqual)
+{
+    while (true)
+    {
+        Console.Write(message);
+        if (double.TryParse(Console.ReadLine(), out double value))
+        {
+            if ((allowEqual && value >= min) || (!allowEqual && value > min))
+                return value;
+        }
+
+        Console.WriteLine($"Invalid input, please write a number.");
+    }
+}
 
 
 
+// This method will be used to start a new calculation, it will ask the user for the fuel type and fuel consumption, and then we can use that information to calculate the trip cost in the future.
+void NewCalculation()
+{
+    Console.WriteLine("\n=== NEW CALCULATION ===");
+    int fuelTypeInt = ReadInt("What is your fuel type?\n1. Diesel\n2. Gas\n> ", 1, 2);
+    string fuelTypeStr = FuelTypeToStr(fuelTypeInt);
+
+    double fuelConsumption = ReadDouble("What is your fuel consumption in km/l? \n> ", 0, false);
+
+    double distance = ReadDouble("What is the distance of your trip in km? \n> ", 0, true);
+
+    double litersUsed = distance / fuelConsumption;
+    double pricePerLiter = fuelTypeInt == 1 ? dieselPrice : gasPrice;
+    double totalPrice = litersUsed * pricePerLiter;
+
+    // Print the results to the user.
+
+    DisplayResults(fuelTypeStr, distance, fuelConsumption, litersUsed, pricePerLiter, totalPrice);
+}
 
 
 
+// This method will be used to convert the fuel type integer input into a string for display purposes.
+string FuelTypeToStr(int fuelTypeInt)
+{
+    if (fuelTypeInt == 1)
+        return "Diesel";
 
+    return "Gas";
+}
 
+// This method will be used to display the results of the calculation to the user in a clear and organized manner.
+void DisplayResults(string fuelType, double distance, double consumption, double litersUsed, double pricePerLiter, double totalPrice)
+{
+    Console.WriteLine("===TRIP RECEIPT===");
+    Console.WriteLine($"FUEL TYPE: {fuelType}");
+    Console.WriteLine($"DISTANCE: {distance:F2} KM");
+    Console.WriteLine($"CONSUMPTION: {consumption:F2} KM/L");
+    Console.WriteLine($"LITERS USED: {litersUsed:F2} L");
+    Console.WriteLine($"PRICE PER LITER: {pricePerLiter:F2} DKK");
+    Console.WriteLine($"TOTAL PRICE: {totalPrice:F2} DKK");
+    Pause();
+}
 
-
-
-
-
-
-
+// This method will be used to pause the program and wait for the user to press a key before returning to the main menu.
+void Pause()
+{
+    Console.WriteLine("\nPress any key to return to menu...");
+    Console.ReadKey();
+}
